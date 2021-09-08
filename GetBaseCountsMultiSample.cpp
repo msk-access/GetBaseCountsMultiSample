@@ -34,7 +34,7 @@ using namespace std;
 using namespace BamTools;
 
 
-const string VERSION = "GetBaseCountsMultiSample 1.2.4";
+const string VERSION = "GetBaseCountsMultiSample 1.2.5";
 
 string input_fasta_file;
 map<string, string> input_bam_files;
@@ -1044,7 +1044,7 @@ void sortAndIndexVariant(vector<VariantEntry *>& variant_vec, vector<pair<size_t
 {
     if(variant_vec.size() == 0)
     {
-        cerr << "[WARNING] No variant need to be processed " << endl;
+        cout << "[WARNING] No variant need to be processed. A header-only maf output will be generated. " << endl;
         return;
     }
     cout << "[INFO] Sorting variants" << endl;
@@ -1081,7 +1081,7 @@ void sortAndIndexVariant16K(vector<VariantEntry *>& variant_vec, vector<pair<siz
 {
     if(variant_vec.size() == 0)
     {
-        cerr << "[WARNING] No variant need to be processed " << endl;
+        cout << "[WARNING] No variant need to be processed. A header-only maf output will be generated. " << endl;
         return;
     }
     cout << "[INFO] Sorting variants" << endl;

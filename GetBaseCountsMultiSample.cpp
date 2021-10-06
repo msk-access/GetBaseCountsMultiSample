@@ -1957,6 +1957,12 @@ void baseCountGENERIC(VariantEntry& my_variant_entry, vector<BamAlignment>& bam_
                         if(ref_pos + op.Length - 1 > my_variant_entry.end_pos)  //unmatched deletion
                             alignment_allele = "U";
                         ref_pos += op.Length;
+                        if(ref_pos == my_variant_entry.end_pos + 1) // allow adding additional insertion if D / N cigar falls at the variant end position
+                        {
+                            vector<CigarOp>::const_iterator cigarIter_next = cigarIter + 1;
+                            if(cigarIter_next != my_bam_alignment.CigarData.end() && cigarIter_next->Type == 'I')
+                                additional_insertion = true;
+                        }
                         break;
                     }
                     case 'H':
